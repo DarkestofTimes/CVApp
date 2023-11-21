@@ -1,0 +1,73 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+main {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.fields {
+  max-height: 80vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(6, min-content);
+  align-content: start;
+}
+.preview {
+  width: 100%;
+  position: sticky;
+  padding: 2rem;
+}
+
+.fieldSection {
+  transition: height ease 0.4s;
+  width: 100%;
+  overflow: hidden;
+}
+.h2Button {
+  width: 100%;
+}
+.content {
+  padding: 0.5rem;
+}
+
+.innerWrapper {
+  transition: height ease 0.4s;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+.h3Button {
+  width: 100%;
+}
+.addElement {
+  width: 100%;
+}
+
+@media (max-width: 426px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .preview {
+    width: 100%;
+    position: block;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+  .preview {
+    grid-column: 1/ -1;
+  }
+  .fields {
+    display: none;
+  }
+  .printBtn {
+    display: none;
+  }
+}
