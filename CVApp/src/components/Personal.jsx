@@ -1,17 +1,30 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useRef } from "react";
 export const Personal = ({
   personal,
   onChange,
   toggleExpand,
   fieldSectionRef,
 }) => {
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.click();
+    }
+  }, []);
+
   return (
     <section
       className="personal fieldSection"
       ref={fieldSectionRef[0]}
       data-id="0">
       <h2 className="fieldsH2">
-        <button onClick={toggleExpand} className="h2Button" data-id="0">
+        <button
+          onClick={toggleExpand}
+          ref={buttonRef}
+          className="h2Button"
+          data-id="0">
           Personal
         </button>
       </h2>

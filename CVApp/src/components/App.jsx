@@ -62,9 +62,11 @@ function App() {
     4: createRef(),
   };
   const [expand, setExpand] = useState({
-    outer: 0,
+    outer: null,
     inner: null,
   });
+
+  console.log(expand);
 
   const toggleExpand = (ev) => {
     if (ev.target.className.includes("h2Button")) {
