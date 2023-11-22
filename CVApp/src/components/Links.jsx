@@ -18,10 +18,10 @@ export const Links = ({
           Links
         </button>
       </h2>
-      <div className="content">
+      <div className="fieldContent">
         {links.length > 0
           ? links.map((link) => (
-              <div key={link.id} className="innerWrapper">
+              <div key={link.id} className="inputWrapper">
                 <label htmlFor={link.id + "name"}>Link to:</label>
                 <input
                   type="text"
@@ -39,16 +39,16 @@ export const Links = ({
                   data-set="links"
                 />
                 <button
-                  className="deleteSkill"
+                  className="deleteItem"
                   data-set="links"
                   data-id={link.id}
                   onClick={deleteItem}>
-                  X
+                  Delete
                 </button>
               </div>
             ))
           : ""}
-        <button className="addElement" onClick={addItem} data-set="links">
+        <button className="addItem" onClick={addItem} data-set="links">
           +
         </button>
       </div>

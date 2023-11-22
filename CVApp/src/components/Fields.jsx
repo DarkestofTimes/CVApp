@@ -34,9 +34,6 @@ export const Fields = ({
 
   return (
     <div className="fields">
-      <button className="clearForm" onClick={clearForm}>
-        Clear
-      </button>
       <Personal
         personal={personal}
         onChange={onChange}
@@ -85,6 +82,9 @@ export const Fields = ({
         fieldSectionRef={refs}
         handleTransitionEnd={handleTransitionEnd}
       />
+      <button className="clearForm" onClick={clearForm}>
+        Clear
+      </button>
       <RenderHeightOffset
         refs={refs}
         expand={expand}

@@ -23,7 +23,7 @@ export const Experience = ({
           Experience
         </button>
       </h2>
-      <div className="content">
+      <div className="fieldContent">
         {experience.map((item) => (
           <ExpItem
             key={item.id}
@@ -35,7 +35,7 @@ export const Experience = ({
             handleTransitionEnd={handleTransitionEnd}
           />
         ))}
-        <button className="addElement" onClick={addItem} data-set="experience">
+        <button className="addItem" onClick={addItem} data-set="experience">
           +
         </button>
       </div>

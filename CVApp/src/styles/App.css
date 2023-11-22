@@ -2,48 +2,153 @@
   scroll-behavior: smooth;
 }
 
+#root {
+  min-height: 100vh;
+}
+
+body {
+  background: linear-gradient(
+    rgba(104, 59, 148, 0.495),
+    rgba(0, 0, 0, 0.468) 90%
+  );
+  background-attachment: fixed;
+}
+
 main {
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
 
 .fields {
-  max-height: 80vh;
-  width: 100%;
+  width: clamp(300px, 100%, 100%);
   display: grid;
   grid-template-rows: repeat(6, min-content);
+  grid-template-columns: 1fr;
   align-content: start;
+  margin: 0.5rem;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .preview {
-  width: 100%;
+  width: clamp(300px, 80%, 100%);
   position: sticky;
-  padding: 2rem;
+  margin: clamp(0, 1rem, 2rem);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fieldSection {
   transition: height ease 0.4s;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 .h2Button {
+  min-height: 5rem;
+  font-size: 2rem;
   width: 100%;
+  background-color: rgba(102, 51, 153, 0.413);
 }
-.content {
-  padding: 0.5rem;
+.fieldContent {
+  display: flex;
+  flex-flow: column;
+  margin: 1rem 0.5rem;
 }
 
 .innerWrapper {
   transition: height ease 0.2s;
   width: 100%;
   overflow: hidden;
-  padding: 0.5rem;
+  margin: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+}
+.fieldsH3 {
+  height: min-content;
 }
 .h3Button {
+  font-size: 1.4rem;
+  min-height: 4rem;
   width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.559);
 }
-.addElement {
+.content {
+  margin: 0.5rem;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+.inputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
   width: 100%;
+  font-size: 1.2rem;
+  height: 2rem;
+}
+input {
+  width: 100%;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  background-color: rgba(0, 0, 0, 0.505);
+}
+textarea {
+  width: 100%;
+  height: 6rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  resize: none;
+  padding: 0 0.5rem;
+  background-color: rgba(0, 0, 0, 0.505);
+}
+
+.deleteItem {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  background-color: rgba(148, 3, 3, 0.466);
+}
+.addItem {
+  min-height: 2.5rem;
+  width: 100%;
+  margin: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+  font-weight: bold;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background-color: rgba(0, 128, 0, 0.58);
+}
+
+.printBtn {
+  position: fixed;
+  bottom: 10vh;
+  right: 10vw;
+  width: 5rem;
+  height: 5rem;
+  background-color: rgba(102, 51, 153, 0.589);
+  font-size: 1.5rem;
+}
+
+.clearForm {
+  top: 5vh;
+  right: 10vw;
+  width: 7rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  margin: 1rem;
+  background-color: rgba(148, 3, 3, 0.635);
 }
 
 @media (max-width: 426px) {
@@ -53,7 +158,13 @@ main {
   }
   .preview {
     width: 100%;
-    position: block;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  main {
+    width: 70%;
+    margin: 0 auto;
   }
 }
 
@@ -70,4 +181,26 @@ main {
   .printBtn {
     display: none;
   }
+}
+
+/* SCROLLBAR */
+
+body::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+  width: 11px;
+}
+textarea,
+body {
+  scrollbar-width: thin;
+  scrollbar-color: rebeccapurple;
+}
+textarea::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 7%);
+}
+textarea::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color: rebeccapurple;
+  border-radius: 6px;
+  border: 1px solid black;
 }

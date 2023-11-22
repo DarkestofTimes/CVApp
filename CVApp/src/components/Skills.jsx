@@ -17,10 +17,10 @@ export const Skills = ({
           Skill Set
         </button>
       </h2>
-      <div className="content">
+      <div className="fieldContent">
         {skills.length > 0
           ? skills.map((skill) => (
-              <div key={skill.id} className="innerWrapper">
+              <div key={skill.id} className="inputWrapper">
                 <label htmlFor={skill.id + "skill"}>Skill:</label>
                 <input
                   type="text"
@@ -38,16 +38,16 @@ export const Skills = ({
                   data-set="skills"
                 />
                 <button
-                  className="deleteSkill"
+                  className="deleteItem"
                   data-set="skills"
                   data-id={skill.id}
                   onClick={deleteItem}>
-                  X
+                  Delete
                 </button>
               </div>
             ))
           : ""}
-        <button className="addElement" onClick={addItem} data-set="skills">
+        <button className="addItem" onClick={addItem} data-set="skills">
           +
         </button>
       </div>

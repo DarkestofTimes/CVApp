@@ -13,17 +13,19 @@ export const RenderHeightOffset = ({ expand, refs, transitionDone }) => {
       const currentRef = refs[key].current;
       if (currentRef) {
         if (expand.outer == currentRef.getAttribute("data-id")) {
-          currentRef.style.height = `${calculateTotalHeight(currentRef)}px`;
+          currentRef.style.height = `${
+            calculateTotalHeight(currentRef) + 20
+          }px`;
         } else if (expand.inner == currentRef.getAttribute("data-id")) {
           currentRef.style.height = `${calculateTotalHeight(currentRef)}px`;
         } else {
           if (!currentRef.classList.contains("fieldSection")) {
             currentRef.style.height = `${
-              currentRef.querySelector(".h3Button").offsetHeight + 4
+              currentRef.querySelector(".h3Button").offsetHeight
             }px`;
           } else if (currentRef.classList.contains("fieldSection")) {
             currentRef.style.height = `${
-              currentRef.querySelector(".h2Button").offsetHeight + 10
+              currentRef.querySelector(".h2Button").offsetHeight
             }px`;
           }
         }

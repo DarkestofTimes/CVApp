@@ -15,7 +15,7 @@ export const Personal = ({
           Personal
         </button>
       </h2>
-      <div className="content">
+      <div className="fieldContent">
         {Object.keys(personal).map((key) => (
           <div key={key} className="inputWrapper">
             <label htmlFor={key}>

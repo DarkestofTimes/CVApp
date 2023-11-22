@@ -23,7 +23,7 @@ export const Education = ({
           Education
         </button>
       </h2>
-      <div className="content">
+      <div className="fieldContent">
         {education.map((item) => (
           <EdItem
             key={item.id}
@@ -35,7 +35,7 @@ export const Education = ({
             handleTransitionEnd={handleTransitionEnd}
           />
         ))}
-        <button className="addElement" onClick={addItem} data-set="education">
+        <button className="addItem" onClick={addItem} data-set="education">
           +
         </button>
       </div>
