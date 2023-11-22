@@ -8,7 +8,7 @@ export const Personal = ({
   return (
     <section
       className="personal fieldSection"
-      ref={fieldSectionRef}
+      ref={fieldSectionRef[0]}
       data-id="0">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="0">

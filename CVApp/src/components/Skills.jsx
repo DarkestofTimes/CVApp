@@ -8,7 +8,10 @@ export const Skills = ({
   fieldSectionRef,
 }) => {
   return (
-    <section className="Skills fieldSection" ref={fieldSectionRef} data-id="1">
+    <section
+      className="Skills fieldSection"
+      ref={fieldSectionRef[1]}
+      data-id="1">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="1">
           Skill Set

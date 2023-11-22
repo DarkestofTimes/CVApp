@@ -1,27 +1,33 @@
 import { useEffect } from "react";
 
-export const RenderHeightOffset = ({ expand, refs }) => {
+export const RenderHeightOffset = ({ expand, refs, transitionDone }) => {
   const calculateTotalHeight = (element) => {
     return Array.from(element.children).reduce(
-      (totalHeight, child) => totalHeight + child.offsetHeight,
+      (totalHeight, child) => totalHeight + child.scrollHeight,
       0
     );
   };
 
   useEffect(() => {
-    console.log(refs);
     Object.keys(refs).forEach((key) => {
       const currentRef = refs[key].current;
-
       if (currentRef) {
-        if (expand == currentRef.getAttribute("data-id")) {
+        if (expand.outer == currentRef.getAttribute("data-id")) {
+          currentRef.style.height = `${calculateTotalHeight(currentRef)}px`;
+        } else if (expand.inner == currentRef.getAttribute("data-id")) {
           currentRef.style.height = `${calculateTotalHeight(currentRef)}px`;
         } else {
-          currentRef.style.height = `${
-            currentRef.querySelector(".h2Button").offsetHeight + 4
-          }px`;
+          if (!currentRef.classList.contains("fieldSection")) {
+            currentRef.style.height = `${
+              currentRef.querySelector(".h3Button").offsetHeight + 4
+            }px`;
+          } else if (currentRef.classList.contains("fieldSection")) {
+            currentRef.style.height = `${
+              currentRef.querySelector(".h2Button").offsetHeight + 10
+            }px`;
+          }
         }
       }
     });
-  }, [expand, refs]);
+  }, [expand, refs, transitionDone]);
 };

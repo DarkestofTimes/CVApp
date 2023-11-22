@@ -9,7 +9,10 @@ export const Links = ({
   fieldSectionRef,
 }) => {
   return (
-    <section className="Links fieldSection" ref={fieldSectionRef} data-id="3">
+    <section
+      className="Links fieldSection"
+      ref={fieldSectionRef[3]}
+      data-id="3">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="3">
           Links

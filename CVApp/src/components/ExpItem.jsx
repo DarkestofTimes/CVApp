@@ -1,21 +1,26 @@
 /* eslint-disable react/prop-types */
+
 export const ExpItem = ({
   item,
   onChange,
   deleteItem,
   expRef,
-  toggleInnerExpand,
+  toggleExpand,
+  handleTransitionEnd,
 }) => {
   return (
-    <div key={item.id} className="innerWrapper" ref={expRef} data-id={item.id}>
+    <div
+      key={item.id}
+      className="innerWrapper"
+      onTransitionEnd={handleTransitionEnd}
+      ref={expRef}
+      data-id={item.id}>
       <h3 className="fieldsH2">
-        <button
-          onClick={toggleInnerExpand}
-          className="h3Button"
-          data-id={item.id}>
+        <button onClick={toggleExpand} className="h3Button" data-id={item.id}>
           {item["Company:"]}
         </button>
       </h3>
+
       <div className="content">
         {Object.keys(item).map((key) => (
           <div key={item.id + key} className="inputWrapper">

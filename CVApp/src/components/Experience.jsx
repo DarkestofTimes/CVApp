@@ -1,47 +1,22 @@
 /* eslint-disable react/prop-types */
-import { generateId } from "./generateId.jsx";
-import { useState, useRef } from "react";
+import { createRef } from "react";
 import { ExpItem } from "./ExpItem.jsx";
-import { RenderHeightOffset } from "./RenderHeightOffset.jsx";
 
 export const Experience = ({
   experience,
+  addItem,
   onChange,
   deleteItem,
   toggleExpand,
-  setExperience,
   fieldSectionRef,
+  handleTransitionEnd,
 }) => {
-  const [innerExpand, setInnerExpand] = useState(0);
-  const innerRefs = useRef({});
-
-  const toggleInnerExpand = (ev) => {
-    setInnerExpand((prevExpand) =>
-      prevExpand === ev.target.getAttribute("data-id")
-        ? null
-        : ev.target.getAttribute("data-id")
-    );
-  };
-
-  const handleAddItem = () => {
-    const newItem = {
-      "Company:": "",
-      "Title:": "",
-      "From:": "",
-      "Till:": "",
-      "Location:": "",
-      "Description:": "",
-      id: generateId(),
-    };
-    setExperience((prevExp) => [...prevExp, newItem]);
-
-    setInnerExpand(newItem.id);
-  };
+  experience.map((exp) => (fieldSectionRef[exp.id] = createRef()));
 
   return (
     <section
       className="Experience fieldSection"
-      ref={fieldSectionRef}
+      ref={fieldSectionRef[2]}
       data-id="2">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="2">
@@ -55,19 +30,15 @@ export const Experience = ({
             item={item}
             onChange={onChange}
             deleteItem={deleteItem}
-            innerExpand={innerExpand}
-            toggleInnerExpand={toggleInnerExpand}
-            /*  expRef={(el) => (innerRefs.current[item.id] = el)} */
+            toggleExpand={toggleExpand}
+            expRef={fieldSectionRef[item.id]}
+            handleTransitionEnd={handleTransitionEnd}
           />
         ))}
-        <button
-          className="addElement"
-          onClick={handleAddItem}
-          data-set="experience">
+        <button className="addElement" onClick={addItem} data-set="experience">
           +
         </button>
       </div>
-      {/*  <RenderHeightOffset refs={innerRefs} expand={innerExpand} /> */}
     </section>
   );
 };

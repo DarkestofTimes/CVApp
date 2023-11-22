@@ -4,16 +4,19 @@ export const EdItem = ({
   item,
   onChange,
   deleteItem,
-  toggleInnerExpand,
+  toggleExpand,
   edRef,
+  handleTransitionEnd,
 }) => {
   return (
-    <div key={item.id} className="innerWrapper" ref={edRef} data-id={item.id}>
+    <div
+      key={item.id}
+      className="innerWrapper"
+      ref={edRef}
+      onTransitionEnd={handleTransitionEnd}
+      data-id={item.id}>
       <h3 className="fieldsH2">
-        <button
-          onClick={toggleInnerExpand}
-          className="h3Button"
-          data-id={item.id}>
+        <button onClick={toggleExpand} className="h3Button" data-id={item.id}>
           {item["School:"]}
         </button>
       </h3>

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, createRef } from "react";
 import { Fields } from "./Fields.jsx";
 import { Preview } from "./Preview.jsx";
 import { generateId } from "./generateId.jsx";
@@ -54,6 +54,41 @@ function App() {
       id: generateId(),
     },
   ]);
+  const refs = {
+    0: createRef(),
+    1: createRef(),
+    2: createRef(),
+    3: createRef(),
+    4: createRef(),
+  };
+  const [expand, setExpand] = useState({
+    outer: 0,
+    inner: null,
+  });
+
+  const toggleExpand = (ev) => {
+    if (ev.target.className.includes("h2Button")) {
+      const outer =
+        expand.outer === ev.target.getAttribute("data-id")
+          ? null
+          : ev.target.getAttribute("data-id");
+
+      const inner = outer !== expand.outer ? null : expand.inner;
+      setExpand((prevExpand) => ({
+        inner: inner,
+        outer: outer,
+      }));
+    } else {
+      const inner =
+        expand.inner === ev.target.getAttribute("data-id")
+          ? null
+          : ev.target.getAttribute("data-id");
+      setExpand((prevExpand) => ({
+        ...prevExpand,
+        inner: inner,
+      }));
+    }
+  };
 
   const handleChange = (ev) => {
     if (ev.target.getAttribute("data-set") == "personal") {
@@ -139,6 +174,38 @@ function App() {
       ];
       setLinks(newLinks);
     }
+    if (ev.target.getAttribute("data-set") == "experience") {
+      const newItem = {
+        "Company:": "",
+        "Title:": "",
+        "From:": "",
+        "Till:": "",
+        "Location:": "",
+        "Description:": "",
+        id: generateId(),
+      };
+      setExperience((prevExp) => [...prevExp, newItem]);
+      setExpand((prevExpand) => ({
+        ...prevExpand,
+        inner: newItem.id,
+      }));
+    }
+    if (ev.target.getAttribute("data-set") == "education") {
+      const newItem = {
+        "School:": "",
+        "Degree:": "",
+        "From:": "",
+        "Till:": "",
+        "Location:": "",
+        "Description:": "",
+        id: generateId(),
+      };
+      setEducation((prevExp) => [...prevExp, newItem]);
+      setExpand((prevExpand) => ({
+        ...prevExpand,
+        inner: newItem.id,
+      }));
+    }
   };
 
   const deleteItem = (ev) => {
@@ -198,6 +265,9 @@ function App() {
           deleteItem={deleteItem}
           setExperience={setExperience}
           setEducation={setEducation}
+          expand={expand}
+          toggleExpand={toggleExpand}
+          refs={refs}
         />
         <Preview
           personal={personal}

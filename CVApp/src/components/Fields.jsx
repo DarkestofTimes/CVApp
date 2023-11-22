@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
 import { useState } from "react";
 import { Personal } from "./Personal.jsx";
 import { Skills } from "./Skills.jsx";
@@ -20,23 +19,17 @@ export const Fields = ({
   clearForm,
   setExperience,
   setEducation,
+  expand,
+  toggleExpand,
+  refs,
 }) => {
-  const [expand, setExpand] = useState(0);
+  const [transitionDone, setTransitionDone] = useState({
+    exp: false,
+    ed: false,
+  });
 
-  const toggleExpand = (ev) => {
-    setExpand((prevExpand) =>
-      prevExpand === +ev.target.getAttribute("data-id")
-        ? null
-        : +ev.target.getAttribute("data-id")
-    );
-  };
-
-  const fieldSectionsRef = {
-    0: useRef(),
-    1: useRef(),
-    2: useRef(),
-    3: useRef(),
-    4: useRef(),
+  const handleTransitionEnd = () => {
+    setTransitionDone((prev) => !prev);
   };
 
   return (
@@ -49,7 +42,7 @@ export const Fields = ({
         onChange={onChange}
         toggleExpand={toggleExpand}
         expand={expand}
-        fieldSectionRef={fieldSectionsRef[0]}
+        fieldSectionRef={refs}
       />
       <Skills
         skills={skills}
@@ -58,16 +51,19 @@ export const Fields = ({
         deleteItem={deleteItem}
         toggleExpand={toggleExpand}
         expand={expand}
-        fieldSectionRef={fieldSectionsRef[1]}
+        fieldSectionRef={refs}
       />
       <Experience
         experience={experience}
+        addItem={addItem}
         onChange={onChange}
         deleteItem={deleteItem}
         toggleExpand={toggleExpand}
         expand={expand}
         setExperience={setExperience}
-        fieldSectionRef={fieldSectionsRef[2]}
+        fieldSectionRef={refs}
+        transitionDone={transitionDone}
+        handleTransitionEnd={handleTransitionEnd}
       />
       <Links
         links={links}
@@ -76,18 +72,24 @@ export const Fields = ({
         deleteItem={deleteItem}
         toggleExpand={toggleExpand}
         expand={expand}
-        fieldSectionRef={fieldSectionsRef[3]}
+        fieldSectionRef={refs}
       />
       <Education
         education={education}
+        addItem={addItem}
         onChange={onChange}
         deleteItem={deleteItem}
         toggleExpand={toggleExpand}
         expand={expand}
         setEducation={setEducation}
-        fieldSectionRef={fieldSectionsRef[4]}
+        fieldSectionRef={refs}
+        handleTransitionEnd={handleTransitionEnd}
       />
-      <RenderHeightOffset refs={fieldSectionsRef} expand={expand} />
+      <RenderHeightOffset
+        refs={refs}
+        expand={expand}
+        transitionDone={transitionDone}
+      />
     </div>
   );
 };
