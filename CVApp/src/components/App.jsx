@@ -64,6 +64,10 @@ function App() {
     outer: null,
     inner: null,
   });
+  const [colors, setColors] = useState({
+    2: "#b92e04",
+    3: "#9c2a4e",
+  });
 
   const toggleExpand = (ev) => {
     if (ev.target.className.includes("h2Button")) {
@@ -267,6 +271,8 @@ function App() {
           expand={expand}
           toggleExpand={toggleExpand}
           refs={refs}
+          colors={colors}
+          setColors={setColors}
         />
         <Preview
           personal={personal}

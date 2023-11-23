@@ -7,6 +7,7 @@ import { Links } from "./Links.jsx";
 import { Education } from "./Education.jsx";
 import { RenderHeightOffset } from "./RenderHeightOffset.jsx";
 import { Print } from "./Print.jsx";
+import { Color } from "./Color.jsx";
 
 export const Fields = ({
   personal,
@@ -23,6 +24,8 @@ export const Fields = ({
   expand,
   toggleExpand,
   refs,
+  colors,
+  setColors,
 }) => {
   const [transitionDone, setTransitionDone] = useState({
     exp: false,
@@ -83,6 +86,7 @@ export const Fields = ({
         fieldSectionRef={refs}
         handleTransitionEnd={handleTransitionEnd}
       />
+      <Color colors={colors} setColors={setColors} />
       <div className="btnWrapper">
         <button className="clearForm" onClick={clearForm}>
           Clear
