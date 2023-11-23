@@ -1,5 +1,11 @@
 :root {
   scroll-behavior: smooth;
+
+  /* VARS */
+
+  --PREV-C: aliceblue;
+  --PREV-H2-C: rgb(185, 46, 4);
+  --PREV-H3-C: rgb(156, 42, 78);
 }
 
 #root {
@@ -29,6 +35,7 @@ main {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  grid-row: 1/-1;
 }
 
 .fieldSection {
@@ -151,11 +158,12 @@ textarea {
   position: sticky;
   margin-left: auto;
   margin-right: auto;
-  color: aliceblue;
+  color: var(--PREV-C);
   padding: clamp(0.3rem, 0.5rem, 2rem);
   padding-top: 3rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  align-self: start;
   align-items: start;
 }
 .personalWrapper {
@@ -170,14 +178,14 @@ textarea {
   width: 100%;
   grid-column: 1/ -1;
   justify-self: center;
-  color: rgb(185, 46, 4);
+  color: var(--PREV-H2-C);
   border-bottom: 2px solid;
   text-align: center;
 }
 .previewH3 {
   grid-column: 1/ -1;
   justify-self: center;
-  color: rgb(156, 42, 78);
+  color: var(--PREV-H3-C);
 }
 .previewData {
   display: grid;
@@ -265,7 +273,6 @@ textarea {
 @media (max-width: 426px) {
   main {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
   }
   .preview {
     border-top: 3px solid aliceblue;
@@ -294,10 +301,7 @@ textarea {
     margin: 0 1rem;
     list-style: disc;
   }
-  .previewEdsWrapper ul,
-  .previewExpsWrapper ul {
-    display: block;
-  }
+
   .previewEdsWrapper li,
   .previewExpsWrapper li {
     list-style: disc;
@@ -315,6 +319,41 @@ textarea {
   @page {
     margin: 0;
   }
+  main {
+    grid-template-columns: 1fr 2fr;
+  }
+  .preview {
+    width: clamp(300px, 90%, 100%);
+    display: grid;
+  }
+  .previewData {
+    grid-column: auto;
+  }
+  .previewLinksWrapper,
+  .previewSkillsWrapper,
+  .previewExpsWrapper,
+  .previewEdsWrapper {
+    padding: 0.5rem;
+  }
+
+  .previewLinksWrapper ul,
+  .previewSkillsWrapper ul {
+    display: block;
+  }
+  .previewSkillWrapper {
+    padding: 0.5rem;
+    list-style: none;
+  }
+  .previewLinkWrapper {
+    padding: 0.5rem;
+    list-style: none;
+  }
+
+  .previewEdWrapper,
+  .previewExpWrapper {
+    list-style: none;
+  }
+
   .preview {
     grid-column: 1/ -1;
     color: black;
