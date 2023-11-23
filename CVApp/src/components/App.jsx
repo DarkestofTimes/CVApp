@@ -3,13 +3,12 @@ import { useState, createRef } from "react";
 import { Fields } from "./Fields.jsx";
 import { Preview } from "./Preview.jsx";
 import { generateId } from "./generateId.jsx";
-import { Print } from "./Print.jsx";
 import "../styles/App.css";
 
 function App() {
   const [personal, setPersonal] = useState({
     name: "Madeup Madeupinson",
-    role: "Senior Penguin Uplifter",
+    role: "Senior Penguin Up Righter",
     email: "totalylegit@mail.nope",
     tel: "+88 8888 888 888",
     loc: "Fallen Penguin City, 55777",
@@ -26,7 +25,7 @@ function App() {
   const [experience, setExperience] = useState([
     {
       "Company:": "United Nations, Flightless Birds Diplomatic Relations",
-      "Title:": "Senior Penguin Uplifter",
+      "Title:": "Senior Penguin Up Righter",
       "From:": "2005",
       "Till:": "Present",
       "Location:": "Fallen Penguin City, 55777",
@@ -44,7 +43,7 @@ function App() {
   ]);
   const [education, setEducation] = useState([
     {
-      "School:": "International Uplifter Academy",
+      "School:": "International Up Righter Academy",
       "Degree:": "PhD Flightless birds Socio-economics",
       "From:": "1997",
       "Till:": "2005",
@@ -65,8 +64,6 @@ function App() {
     outer: null,
     inner: null,
   });
-
-  console.log(expand);
 
   const toggleExpand = (ev) => {
     if (ev.target.className.includes("h2Button")) {
@@ -278,7 +275,6 @@ function App() {
           links={links}
           education={education}
         />
-        <Print />
       </main>
     </>
   );

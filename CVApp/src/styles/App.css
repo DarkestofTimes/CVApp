@@ -7,10 +7,7 @@
 }
 
 body {
-  background: linear-gradient(
-    rgba(104, 59, 148, 0.495),
-    rgba(0, 0, 0, 0.468) 90%
-  );
+  background: linear-gradient(rgba(103, 59, 148, 0.568), rgba(0, 0, 0, 0.646));
   background-attachment: fixed;
 }
 
@@ -18,6 +15,8 @@ main {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
+  padding: clamp(0.2rem, 0.5rem, 2rem);
+  padding-top: 1rem;
 }
 
 .fields {
@@ -28,13 +27,6 @@ main {
   align-content: start;
   margin: 0.5rem;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-.preview {
-  width: clamp(300px, 80%, 100%);
-  position: sticky;
-  margin: clamp(0, 1rem, 2rem);
   margin-left: auto;
   margin-right: auto;
 }
@@ -89,6 +81,7 @@ label {
   width: 100%;
   font-size: 1.2rem;
   height: 2rem;
+  padding-left: 0.5rem;
 }
 input {
   width: 100%;
@@ -131,24 +124,142 @@ textarea {
   background-color: rgba(0, 128, 0, 0.58);
 }
 
+.btnWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
 .printBtn {
-  position: fixed;
-  bottom: 10vh;
-  right: 10vw;
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 3rem;
   background-color: rgba(102, 51, 153, 0.589);
   font-size: 1.5rem;
+  margin: 1rem;
 }
 
 .clearForm {
-  top: 5vh;
-  right: 10vw;
   width: 7rem;
   height: 3rem;
   font-size: 1.5rem;
   margin: 1rem;
   background-color: rgba(148, 3, 3, 0.635);
+}
+
+.preview {
+  width: clamp(300px, 90%, 100%);
+  position: sticky;
+  margin-left: auto;
+  margin-right: auto;
+  color: aliceblue;
+  padding: clamp(0.3rem, 0.5rem, 2rem);
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+}
+.personalWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 0.3rem;
+  padding-bottom: 0.5rem;
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+.previewH2 {
+  width: 100%;
+  grid-column: 1/ -1;
+  justify-self: center;
+  color: rgb(185, 46, 4);
+  border-bottom: 2px solid;
+  text-align: center;
+}
+.previewH3 {
+  grid-column: 1/ -1;
+  justify-self: center;
+  color: rgb(156, 42, 78);
+}
+.previewData {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  margin: 0.2rem 0;
+}
+.previewDesc {
+  white-space: pre-wrap;
+}
+.personalWrapper .previewDesc {
+  grid-column: 1/ -1;
+  grid-row: 3/4;
+  margin: 0.5rem 0;
+}
+
+.previewSkillsWrapper {
+  padding: 0.5rem;
+  display: grid;
+}
+
+.previewLinkWrapper,
+.previewSkillWrapper {
+  list-style: none;
+  padding: 0.5rem;
+}
+.previewExpsWrapper {
+  grid-row: 2;
+}
+.previewEdsWrapper {
+  grid-row: 3;
+}
+
+.previewEdsWrapper,
+.previewExpsWrapper {
+  padding: 0.5rem;
+  display: grid;
+}
+
+.previewExpsWrapper li {
+  list-style: none;
+}
+.previewExpWrapper,
+.previewEdWrapper {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.previewEdWrapper p:first-of-type,
+.previewExpWrapper p:first-of-type {
+  grid-column: 1/2;
+}
+.previewEdWrapper p:nth-of-type(2),
+.previewExpWrapper p:nth-of-type(2) {
+  grid-column: 1/2;
+}
+.previewEdWrapper p:nth-of-type(3),
+.previewExpWrapper p:nth-of-type(3) {
+  grid-column: 2/3;
+}
+.previewEdWrapper p:nth-of-type(4),
+.previewExpWrapper p:nth-of-type(4) {
+  grid-column: 2/3;
+  grid-row: 2;
+}
+.previewEdWrapper p:nth-of-type(5),
+.previewExpWrapper p:nth-of-type(5) {
+  grid-column: 1/-1;
+}
+.previewLinksWrapper {
+  display: grid;
+  padding: 0.5rem;
+  line-break: anywhere;
+  grid-column: 2;
+}
+
+.previewEdsWrapper {
+  margin-bottom: 3rem;
+}
+
+.previewSndCol {
+  grid-column: 2;
+  grid-row: 2 / 4;
 }
 
 @media (max-width: 426px) {
@@ -157,13 +268,45 @@ textarea {
     grid-template-rows: auto;
   }
   .preview {
+    border-top: 3px solid aliceblue;
     width: 100%;
+    display: block;
+  }
+  .previewData {
+    grid-column: 1/-1;
+  }
+  .previewLinksWrapper,
+  .previewSkillsWrapper,
+  .previewExpsWrapper,
+  .previewEdsWrapper {
+    padding: 0.5rem 0;
+  }
+
+  .previewLinksWrapper ul,
+  .previewSkillsWrapper ul {
+    display: block;
+  }
+  .previewSkillsWrapper li {
+    margin: 0 1rem;
+    list-style: disc;
+  }
+  .previewLinksWrapper li {
+    margin: 0 1rem;
+    list-style: disc;
+  }
+  .previewEdsWrapper ul,
+  .previewExpsWrapper ul {
+    display: block;
+  }
+  .previewEdsWrapper li,
+  .previewExpsWrapper li {
+    list-style: disc;
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 770px) {
   main {
-    width: 70%;
+    width: clamp(70%, 80%, 90%);
     margin: 0 auto;
   }
 }
@@ -174,12 +317,18 @@ textarea {
   }
   .preview {
     grid-column: 1/ -1;
+    color: black;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
   .fields {
     display: none;
   }
   .printBtn {
     display: none;
+  }
+  .previewEdsWrapper {
+    margin-bottom: 0;
   }
 }
 

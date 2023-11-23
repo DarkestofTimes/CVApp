@@ -6,6 +6,7 @@ import { Experience } from "./Experience.jsx";
 import { Links } from "./Links.jsx";
 import { Education } from "./Education.jsx";
 import { RenderHeightOffset } from "./RenderHeightOffset.jsx";
+import { Print } from "./Print.jsx";
 
 export const Fields = ({
   personal,
@@ -82,9 +83,12 @@ export const Fields = ({
         fieldSectionRef={refs}
         handleTransitionEnd={handleTransitionEnd}
       />
-      <button className="clearForm" onClick={clearForm}>
-        Clear
-      </button>
+      <div className="btnWrapper">
+        <button className="clearForm" onClick={clearForm}>
+          Clear
+        </button>
+        <Print />
+      </div>
       <RenderHeightOffset
         refs={refs}
         expand={expand}

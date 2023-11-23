@@ -4,10 +4,12 @@ export const Preview = ({ personal, skills, experience, links, education }) => {
   return (
     <section className="preview">
       <Personal personal={personal} />
-      <Skills skills={skills} />
       <Experience experience={experience} />
-      <Links links={links} />
       <Education education={education} />
+      <div className="previewSndCol">
+        <Skills skills={skills} />
+        <Links links={links} />
+      </div>
     </section>
   );
 };
