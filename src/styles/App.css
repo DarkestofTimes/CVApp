@@ -341,6 +341,7 @@ textarea {
   .preview {
     width: clamp(300px, 90%, 100%);
     display: grid;
+    background-color: white;
   }
   .previewData {
     grid-column: auto;
