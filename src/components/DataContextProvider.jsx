@@ -67,224 +67,224 @@ export const DataContextProvider = ({ children }) => {
     2: "#b92e04",
     3: "#9c2a4e",
   });
-
-  const toggleExpand = (ev) => {
-    if (ev.target.className.includes("h2Button")) {
-      const outer =
-        expand.outer === ev.target.getAttribute("data-id")
-          ? null
-          : ev.target.getAttribute("data-id");
-
-      const inner = outer !== expand.outer ? null : expand.inner;
-      setExpand((prevExpand) => ({
-        inner: inner,
-        outer: outer,
-      }));
-    } else {
-      const inner =
-        expand.inner === ev.target.getAttribute("data-id")
-          ? null
-          : ev.target.getAttribute("data-id");
-      setExpand((prevExpand) => ({
-        ...prevExpand,
-        inner: inner,
-      }));
-    }
-  };
-
-  const handleChange = (ev) => {
-    if (ev.target.getAttribute("data-set") == "personal") {
-      setPersonal({
-        ...personal,
-        [ev.target.id]: ev.target.value,
-      });
-    }
-    if (ev.target.getAttribute("data-set") == "skills") {
-      const newSkills = [...skills];
-      const mappedSkills = newSkills.map((skill) => {
-        if (ev.target.id.slice(0, 22) === skill.id) {
-          return {
-            ...skill,
-            [ev.target.id.slice(22)]: ev.target.value,
-          };
-        }
-        return skill;
-      });
-      setSkills(mappedSkills);
-    }
-    if (ev.target.getAttribute("data-set") == "experience") {
-      const newExperience = [...experience];
-      const mappedExp = newExperience.map((exp) => {
-        if (ev.target.id.slice(0, 22) == exp.id) {
-          return {
-            ...exp,
-            [ev.target.id.slice(22)]: ev.target.value,
-          };
-        }
-        return exp;
-      });
-      setExperience(mappedExp);
-    }
-    if (ev.target.getAttribute("data-set") == "links") {
-      const newLinks = [...links];
-      const mappedLinks = newLinks.map((link) => {
-        if (ev.target.id.slice(0, 22) == link.id) {
-          return {
-            ...link,
-            [ev.target.id.slice(22)]: ev.target.value,
-          };
-        }
-        return link;
-      });
-      setLinks(mappedLinks);
-    }
-    if (ev.target.getAttribute("data-set") == "education") {
-      const newEducation = [...education];
-      const mappedExp = newEducation.map((ed) => {
-        if (ev.target.id.slice(0, 22) == ed.id) {
-          return {
-            ...ed,
-            [ev.target.id.slice(22)]: ev.target.value,
-          };
-        }
-        return ed;
-      });
-      setEducation(mappedExp);
-    }
-  };
-
-  const addItem = (ev) => {
-    if (ev.target.getAttribute("data-set") == "skills") {
-      const newSkills = [
-        ...skills,
-        {
-          skill: "",
-          description: "",
-          id: generateId(),
-        },
-      ];
-      setSkills(newSkills);
-    }
-    if (ev.target.getAttribute("data-set") == "links") {
-      const newLinks = [
-        ...links,
-        {
-          name: "",
-          link: "",
-          id: generateId(),
-        },
-      ];
-      setLinks(newLinks);
-    }
-    if (ev.target.getAttribute("data-set") == "experience") {
-      const newItem = {
-        "Company:": "",
-        "Title:": "",
-        "From:": "",
-        "Till:": "",
-        "Location:": "",
-        "Description:": "",
-        id: generateId(),
-      };
-      setExperience((prevExp) => [...prevExp, newItem]);
-      setExpand((prevExpand) => ({
-        ...prevExpand,
-        inner: newItem.id,
-      }));
-    }
-    if (ev.target.getAttribute("data-set") == "education") {
-      const newItem = {
-        "School:": "",
-        "Degree:": "",
-        "From:": "",
-        "Till:": "",
-        "Location:": "",
-        "Description:": "",
-        id: generateId(),
-      };
-      setEducation((prevExp) => [...prevExp, newItem]);
-      setExpand((prevExpand) => ({
-        ...prevExpand,
-        inner: newItem.id,
-      }));
-    }
-  };
-
-  const deleteItem = (ev) => {
-    if (ev.target.getAttribute("data-set") == "skills") {
-      const newSkills = skills.filter(
-        (item) => item.id !== ev.target.getAttribute("data-id")
-      );
-      setSkills(newSkills);
-    }
-    if (ev.target.getAttribute("data-set") == "experience") {
-      const newExp = experience.filter(
-        (item) => item.id !== ev.target.getAttribute("data-id")
-      );
-      setExperience(newExp);
-    }
-    if (ev.target.getAttribute("data-set") == "links") {
-      const newLinks = links.filter(
-        (item) => item.id !== ev.target.getAttribute("data-id")
-      );
-      setLinks(newLinks);
-    }
-    if (ev.target.getAttribute("data-set") == "education") {
-      const newEducation = education.filter(
-        (item) => item.id !== ev.target.getAttribute("data-id")
-      );
-      setEducation(newEducation);
-    }
-  };
-
-  const clearForm = () => {
-    setPersonal({
-      name: "",
-      role: "",
-      email: "",
-      tel: "",
-      loc: "",
-      persDesc: "",
-    });
-    setSkills([]);
-    setExperience([]);
-    setLinks([]);
-    setEducation([]);
-  };
-
   const [transitionDone, setTransitionDone] = useState({
     exp: false,
     ed: false,
   });
 
-  const handleTransitionEnd = () => {
-    setTransitionDone((prev) => !prev);
-  };
+  const contextItems = useMemo(() => {
+    const toggleExpand = (ev) => {
+      if (ev.target.className.includes("h2Button")) {
+        const outer =
+          expand.outer === ev.target.getAttribute("data-id")
+            ? null
+            : ev.target.getAttribute("data-id");
 
-  const contextItems = {
-    personal,
-    setPersonal,
-    skills,
-    setSkills,
-    experience,
-    setExperience,
-    links,
-    setLinks,
-    education,
-    setEducation,
-    refs,
-    expand,
-    setExpand,
-    colors,
-    setColors,
-    toggleExpand,
-    handleChange,
-    addItem,
-    deleteItem,
-    clearForm,
-    transitionDone,
-    handleTransitionEnd,
-  };
+        const inner = outer !== expand.outer ? null : expand.inner;
+        setExpand((prevExpand) => ({
+          inner: inner,
+          outer: outer,
+        }));
+      } else {
+        const inner =
+          expand.inner === ev.target.getAttribute("data-id")
+            ? null
+            : ev.target.getAttribute("data-id");
+        setExpand((prevExpand) => ({
+          ...prevExpand,
+          inner: inner,
+        }));
+      }
+    };
+
+    const handleChange = (ev) => {
+      if (ev.target.getAttribute("data-set") == "personal") {
+        setPersonal({
+          ...personal,
+          [ev.target.id]: ev.target.value,
+        });
+      }
+      if (ev.target.getAttribute("data-set") == "skills") {
+        const newSkills = [...skills];
+        const mappedSkills = newSkills.map((skill) => {
+          if (ev.target.id.slice(0, 22) === skill.id) {
+            return {
+              ...skill,
+              [ev.target.id.slice(22)]: ev.target.value,
+            };
+          }
+          return skill;
+        });
+        setSkills(mappedSkills);
+      }
+      if (ev.target.getAttribute("data-set") == "experience") {
+        const newExperience = [...experience];
+        const mappedExp = newExperience.map((exp) => {
+          if (ev.target.id.slice(0, 22) == exp.id) {
+            return {
+              ...exp,
+              [ev.target.id.slice(22)]: ev.target.value,
+            };
+          }
+          return exp;
+        });
+        setExperience(mappedExp);
+      }
+      if (ev.target.getAttribute("data-set") == "links") {
+        const newLinks = [...links];
+        const mappedLinks = newLinks.map((link) => {
+          if (ev.target.id.slice(0, 22) == link.id) {
+            return {
+              ...link,
+              [ev.target.id.slice(22)]: ev.target.value,
+            };
+          }
+          return link;
+        });
+        setLinks(mappedLinks);
+      }
+      if (ev.target.getAttribute("data-set") == "education") {
+        const newEducation = [...education];
+        const mappedExp = newEducation.map((ed) => {
+          if (ev.target.id.slice(0, 22) == ed.id) {
+            return {
+              ...ed,
+              [ev.target.id.slice(22)]: ev.target.value,
+            };
+          }
+          return ed;
+        });
+        setEducation(mappedExp);
+      }
+    };
+
+    const addItem = (ev) => {
+      if (ev.target.getAttribute("data-set") == "skills") {
+        const newSkills = [
+          ...skills,
+          {
+            skill: "",
+            description: "",
+            id: generateId(),
+          },
+        ];
+        setSkills(newSkills);
+      }
+      if (ev.target.getAttribute("data-set") == "links") {
+        const newLinks = [
+          ...links,
+          {
+            name: "",
+            link: "",
+            id: generateId(),
+          },
+        ];
+        setLinks(newLinks);
+      }
+      if (ev.target.getAttribute("data-set") == "experience") {
+        const newItem = {
+          "Company:": "",
+          "Title:": "",
+          "From:": "",
+          "Till:": "",
+          "Location:": "",
+          "Description:": "",
+          id: generateId(),
+        };
+        setExperience((prevExp) => [...prevExp, newItem]);
+        setExpand((prevExpand) => ({
+          ...prevExpand,
+          inner: newItem.id,
+        }));
+      }
+      if (ev.target.getAttribute("data-set") == "education") {
+        const newItem = {
+          "School:": "",
+          "Degree:": "",
+          "From:": "",
+          "Till:": "",
+          "Location:": "",
+          "Description:": "",
+          id: generateId(),
+        };
+        setEducation((prevExp) => [...prevExp, newItem]);
+        setExpand((prevExpand) => ({
+          ...prevExpand,
+          inner: newItem.id,
+        }));
+      }
+    };
+
+    const deleteItem = (ev) => {
+      if (ev.target.getAttribute("data-set") == "skills") {
+        const newSkills = skills.filter(
+          (item) => item.id !== ev.target.getAttribute("data-id")
+        );
+        setSkills(newSkills);
+      }
+      if (ev.target.getAttribute("data-set") == "experience") {
+        const newExp = experience.filter(
+          (item) => item.id !== ev.target.getAttribute("data-id")
+        );
+        setExperience(newExp);
+      }
+      if (ev.target.getAttribute("data-set") == "links") {
+        const newLinks = links.filter(
+          (item) => item.id !== ev.target.getAttribute("data-id")
+        );
+        setLinks(newLinks);
+      }
+      if (ev.target.getAttribute("data-set") == "education") {
+        const newEducation = education.filter(
+          (item) => item.id !== ev.target.getAttribute("data-id")
+        );
+        setEducation(newEducation);
+      }
+    };
+
+    const clearForm = () => {
+      setPersonal({
+        name: "",
+        role: "",
+        email: "",
+        tel: "",
+        loc: "",
+        persDesc: "",
+      });
+      setSkills([]);
+      setExperience([]);
+      setLinks([]);
+      setEducation([]);
+    };
+
+    const handleTransitionEnd = () => {
+      setTransitionDone((prev) => !prev);
+    };
+    return {
+      personal,
+      skills,
+      experience,
+      links,
+      education,
+      refs,
+      expand,
+      colors,
+      transitionDone,
+      setPersonal,
+      setSkills,
+      setExperience,
+      setLinks,
+      setEducation,
+      setExpand,
+      setColors,
+      toggleExpand,
+      handleChange,
+      addItem,
+      deleteItem,
+      clearForm,
+      handleTransitionEnd,
+    };
+  }, [personal, skills, experience, links, education, refs, expand, colors]);
 
   return (
     <DataContext.Provider value={contextItems}>{children}</DataContext.Provider>
