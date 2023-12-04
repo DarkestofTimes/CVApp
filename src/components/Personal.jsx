@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
-export const Personal = ({
-  personal,
-  onChange,
-  toggleExpand,
-  fieldSectionRef,
-}) => {
+import { useDataContext } from "./DataContextProvider";
+
+export const Personal = () => {
+  const { personal, handleChange, toggleExpand, refs } = useDataContext();
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -15,10 +13,7 @@ export const Personal = ({
   }, []);
 
   return (
-    <section
-      className="personal fieldSection"
-      ref={fieldSectionRef[0]}
-      data-id="0">
+    <section className="personal fieldSection" ref={refs[0]} data-id="0">
       <h2 className="fieldsH2">
         <button
           onClick={toggleExpand}
@@ -48,7 +43,7 @@ export const Personal = ({
               <textarea
                 type="text"
                 id="persDesc"
-                onChange={onChange}
+                onChange={handleChange}
                 value={personal[key]}
                 data-set="personal"
               />
@@ -58,7 +53,7 @@ export const Personal = ({
                   key === "email" ? "email" : key === "tel" ? "tel" : "text"
                 }
                 id={key}
-                onChange={onChange}
+                onChange={handleChange}
                 value={personal[key]}
                 autoComplete={
                   key === "email"

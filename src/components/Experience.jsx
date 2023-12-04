@@ -1,23 +1,22 @@
 /* eslint-disable react/prop-types */
 import { createRef } from "react";
 import { ExpItem } from "./ExpItem.jsx";
+import { useDataContext } from "./DataContextProvider";
 
-export const Experience = ({
-  experience,
-  addItem,
-  onChange,
-  deleteItem,
-  toggleExpand,
-  fieldSectionRef,
-  handleTransitionEnd,
-}) => {
-  experience.map((exp) => (fieldSectionRef[exp.id] = createRef()));
+export const Experience = () => {
+  const {
+    experience,
+    addItem,
+    handleChange,
+    deleteItem,
+    toggleExpand,
+    refs,
+    handleTransitionEnd,
+  } = useDataContext();
+  experience.map((exp) => (refs[exp.id] = createRef()));
 
   return (
-    <section
-      className="Experience fieldSection"
-      ref={fieldSectionRef[2]}
-      data-id="2">
+    <section className="Experience fieldSection" ref={refs[2]} data-id="2">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="2">
           Experience
@@ -28,10 +27,10 @@ export const Experience = ({
           <ExpItem
             key={item.id}
             item={item}
-            onChange={onChange}
+            onChange={handleChange}
             deleteItem={deleteItem}
             toggleExpand={toggleExpand}
-            expRef={fieldSectionRef[item.id]}
+            expRef={refs[item.id]}
             handleTransitionEnd={handleTransitionEnd}
           />
         ))}

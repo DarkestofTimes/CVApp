@@ -1,18 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useDataContext } from "./DataContextProvider";
 
-export const Links = ({
-  links,
-  onChange,
-  deleteItem,
-  addItem,
-  toggleExpand,
-  fieldSectionRef,
-}) => {
+export const Links = () => {
+  const { links, handleChange, deleteItem, addItem, toggleExpand, refs } =
+    useDataContext();
   return (
-    <section
-      className="Links fieldSection"
-      ref={fieldSectionRef[3]}
-      data-id="3">
+    <section className="Links fieldSection" ref={refs[3]} data-id="3">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="3">
           Links
@@ -27,7 +20,7 @@ export const Links = ({
                   type="text"
                   id={link.id + "name"}
                   value={link.name}
-                  onChange={onChange}
+                  onChange={handleChange}
                   data-set="links"
                 />
                 <label htmlFor={link.id + "link"}>Link:</label>
@@ -35,7 +28,7 @@ export const Links = ({
                   type="text"
                   id={link.id + "link"}
                   value={link.link}
-                  onChange={onChange}
+                  onChange={handleChange}
                   data-set="links"
                 />
                 <button

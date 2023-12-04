@@ -1,17 +1,11 @@
 /* eslint-disable react/prop-types */
-export const Skills = ({
-  skills,
-  onChange,
-  addItem,
-  deleteItem,
-  toggleExpand,
-  fieldSectionRef,
-}) => {
+import { useDataContext } from "./DataContextProvider";
+
+export const Skills = () => {
+  const { skills, handleChange, addItem, deleteItem, toggleExpand, refs } =
+    useDataContext();
   return (
-    <section
-      className="Skills fieldSection"
-      ref={fieldSectionRef[1]}
-      data-id="1">
+    <section className="Skills fieldSection" ref={refs[1]} data-id="1">
       <h2 className="fieldsH2">
         <button onClick={toggleExpand} className="h2Button" data-id="1">
           Skill Set
@@ -26,7 +20,7 @@ export const Skills = ({
                   type="text"
                   id={skill.id + "skill"}
                   value={skill.skill}
-                  onChange={onChange}
+                  onChange={handleChange}
                   data-set="skills"
                 />
                 <label htmlFor={skill.id + "skill"}>description:</label>
@@ -34,7 +28,7 @@ export const Skills = ({
                   type="text"
                   id={skill.id + "description"}
                   value={skill.description}
-                  onChange={onChange}
+                  onChange={handleChange}
                   data-set="skills"
                 />
                 <button

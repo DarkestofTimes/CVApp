@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { SwatchesPicker } from "react-color";
+import { useDataContext } from "./DataContextProvider";
 
-export const Color = ({ colors, setColors }) => {
+export const Color = () => {
+  const { colors, setColors } = useDataContext();
   const [showPicker, setShowPicker] = useState(null);
 
   const handleClick = (ev) => {

@@ -1,20 +1,22 @@
 /* eslint-disable react/prop-types */
+import { useDataContext } from "./DataContextProvider";
 
-export const Preview = ({ personal, skills, experience, links, education }) => {
+export const Preview = () => {
   return (
     <section className="preview">
-      <Personal personal={personal} />
-      <Experience experience={experience} />
-      <Education education={education} />
+      <Personal />
+      <Experience />
+      <Education />
       <div className="previewSndCol">
-        <Skills skills={skills} />
-        <Links links={links} />
+        <Skills />
+        <Links />
       </div>
     </section>
   );
 };
 
-const Personal = ({ personal }) => {
+const Personal = () => {
+  const { personal } = useDataContext();
   return (
     <div className="personalWrapper">
       <h2 className="previewH2">{personal.name}</h2>
@@ -37,7 +39,8 @@ const Personal = ({ personal }) => {
   );
 };
 
-const Skills = ({ skills }) => {
+const Skills = () => {
+  const { skills } = useDataContext();
   return (
     skills.length > 0 && (
       <div className="previewSkillsWrapper">
@@ -55,7 +58,8 @@ const Skills = ({ skills }) => {
   );
 };
 
-const Experience = ({ experience }) => {
+const Experience = () => {
+  const { experience } = useDataContext();
   return (
     experience.length > 0 && (
       <div className="previewExpsWrapper">
@@ -80,7 +84,8 @@ const Experience = ({ experience }) => {
   );
 };
 
-const Links = ({ links }) => {
+const Links = () => {
+  const { links } = useDataContext();
   return (
     links.length > 0 && (
       <div className="previewLinksWrapper">
@@ -100,7 +105,8 @@ const Links = ({ links }) => {
   );
 };
 
-const Education = ({ education }) => {
+const Education = () => {
+  const { education } = useDataContext();
   return (
     education.length > 0 && (
       <div className="previewEdsWrapper">
