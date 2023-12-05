@@ -1,7 +1,7 @@
-import { useDataContext } from "./DataContextProvider";
+import { useClearFormContext } from "./DataContextProvider";
 
 export const ClearForm = () => {
-  const { clearForm } = useDataContext();
+  const { clearForm } = useClearFormContext();
   return (
     <button className="clearForm" onClick={clearForm}>
       Clear

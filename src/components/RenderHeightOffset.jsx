@@ -1,8 +1,14 @@
 import { useEffect } from "react";
-import { useDataContext } from "./DataContextProvider";
+import {
+  useTransitionContext,
+  useRefsContext,
+  useExpandContext,
+} from "./DataContextProvider";
 
 export const RenderHeightOffset = () => {
-  const { expand, refs, transitionDone } = useDataContext();
+  const { refs } = useRefsContext();
+  const { expand } = useExpandContext();
+  const { transitionDone } = useTransitionContext();
   const calculateTotalHeight = (element) => {
     return Array.from(element.children).reduce(
       (totalHeight, child) => totalHeight + child.scrollHeight,

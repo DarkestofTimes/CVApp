@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
-import { useDataContext } from "./DataContextProvider";
+import {
+  usePersonalContext,
+  useRefsContext,
+  useExpandContext,
+} from "./DataContextProvider";
 
 export const Personal = () => {
-  const { personal, handleChange, toggleExpand, refs } = useDataContext();
+  const { personal, handleChange } = usePersonalContext();
+  const { refs } = useRefsContext();
+  const { toggleExpand } = useExpandContext();
   const buttonRef = useRef(null);
 
   useEffect(() => {

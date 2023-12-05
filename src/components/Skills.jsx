@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useDataContext } from "./DataContextProvider";
+import {
+  useSkillsContext,
+  useRefsContext,
+  useExpandContext,
+} from "./DataContextProvider";
 
 export const Skills = () => {
-  const { skills, handleChange, addItem, deleteItem, toggleExpand, refs } =
-    useDataContext();
+  const { skills, addItem, handleChange, deleteItem } = useSkillsContext();
+  const { refs } = useRefsContext();
+  const { toggleExpand } = useExpandContext();
   return (
     <section className="Skills fieldSection" ref={refs[1]} data-id="1">
       <h2 className="fieldsH2">

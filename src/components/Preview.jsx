@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useDataContext } from "./DataContextProvider";
+import {
+  usePersonalContext,
+  useSkillsContext,
+  useExpContext,
+  useLinksContext,
+  useEdContext,
+} from "./DataContextProvider";
 
 export const Preview = () => {
   return (
@@ -16,7 +22,7 @@ export const Preview = () => {
 };
 
 const Personal = () => {
-  const { personal } = useDataContext();
+  const { personal } = usePersonalContext();
   return (
     <div className="personalWrapper">
       <h2 className="previewH2">{personal.name}</h2>
@@ -40,7 +46,7 @@ const Personal = () => {
 };
 
 const Skills = () => {
-  const { skills } = useDataContext();
+  const { skills } = useSkillsContext();
   return (
     skills.length > 0 && (
       <div className="previewSkillsWrapper">
@@ -59,7 +65,7 @@ const Skills = () => {
 };
 
 const Experience = () => {
-  const { experience } = useDataContext();
+  const { experience } = useExpContext();
   return (
     experience.length > 0 && (
       <div className="previewExpsWrapper">
@@ -85,7 +91,7 @@ const Experience = () => {
 };
 
 const Links = () => {
-  const { links } = useDataContext();
+  const { links } = useLinksContext();
   return (
     links.length > 0 && (
       <div className="previewLinksWrapper">
@@ -106,7 +112,7 @@ const Links = () => {
 };
 
 const Education = () => {
-  const { education } = useDataContext();
+  const { education } = useEdContext();
   return (
     education.length > 0 && (
       <div className="previewEdsWrapper">

@@ -1,18 +1,19 @@
 /* eslint-disable react/prop-types */
 import { createRef } from "react";
 import { EdItem } from "./EdItem.jsx";
-import { useDataContext } from "./DataContextProvider";
+import {
+  useEdContext,
+  useTransitionContext,
+  useRefsContext,
+  useExpandContext,
+} from "./DataContextProvider";
 
 export const Education = () => {
-  const {
-    education,
-    addItem,
-    handleChange,
-    deleteItem,
-    toggleExpand,
-    refs,
-    handleTransitionEnd,
-  } = useDataContext();
+  const { education, addItem, handleChange, deleteItem } = useEdContext();
+  const { refs } = useRefsContext();
+  const { toggleExpand } = useExpandContext();
+  const { handleTransitionEnd } = useTransitionContext();
+
   education.map((exp) => (refs[exp.id] = createRef()));
 
   return (
